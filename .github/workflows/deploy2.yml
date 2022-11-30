@@ -1,19 +1,18 @@
 name: Deployment
-# on:
-#   push:
-#     branches:
-#       - main
-#       - dev
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
+      - dev
 env:
   MONGODB_DB_NAME: gh-demo
 jobs:
   test:
     env:
-      MONGODB_CLUSTER_ADDRESS: cluster0.1smym.mongodb.net
-      MONGODB_USERNAME: ty-d
-      MONGODB_PASSWORD: 4xgQ9pCL0WbZE3Lp
-      PORT: 8080
+      MONGODB_CLUSTER_ADDRESS: ${{secrets.MONGODB_CLUSTER_ADDRESS}}
+      MONGODB_USERNAME: ${{secrets.MONGODB_USERNAME}}
+      MONGODB_PASSWORD: ${{secrets.MONGODB_PASSWORD}}
+      PORT: ${{secrets.PORT}}
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
